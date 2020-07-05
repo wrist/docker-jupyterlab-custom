@@ -1,4 +1,4 @@
-FROM jupyter/scipy-notebook
+FROM jupyter/scipy-notebook:latest
 MAINTAINER Hiromasa OHASHI <stoicheia1986@gmail.com>
 
 RUN pip install --upgrade jupyterlab-git jupyterlab_code_formatter autopep8 black
@@ -9,7 +9,7 @@ RUN jupyter labextension install \
   @jupyterlab/toc \
   @lckr/jupyterlab_variableinspector \
   @ryantam626/jupyterlab_code_formatter \
-  jupyterlab_vim
+  @axlair/jupyterlab_vim
 
 RUN jupyter lab build
 
@@ -18,3 +18,17 @@ RUN pip install \
   'ghp-import2' \
   'webassets' \
   'Nikola[extras]'
+
+# for pybind11
+RUN pip install pybind11
+RUN git clone https://github.com/aldanor/ipybind.git && cd ipybind && python setup.py build && python setup.py install
+
+# for openfst
+RUN conda install -c conda-forge openfst
+RUN pip install openfst-python
+
+# install as root
+USER root
+RUN apt update && apt install -y graphviz
+
+USER ${NB_USER}
