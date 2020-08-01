@@ -5,11 +5,14 @@ RUN pip install --upgrade jupyterlab-git jupyterlab_code_formatter autopep8 blac
 RUN jupyter serverextension enable --py jupyterlab_git
 RUN jupyter serverextension enable --py jupyterlab_code_formatter
 
+RUN conda install xeus-python -c conda-forge
+
 RUN jupyter labextension install \
   @jupyterlab/toc \
   @lckr/jupyterlab_variableinspector \
   @ryantam626/jupyterlab_code_formatter \
-  @axlair/jupyterlab_vim
+  @axlair/jupyterlab_vim \
+  @jupyterlab/debugger
 
 RUN jupyter lab build
 
