@@ -2,7 +2,7 @@ FROM jupyter/scipy-notebook:latest
 MAINTAINER Hiromasa OHASHI <stoicheia1986@gmail.com>
 
 RUN pip install --upgrade jupyterlab-git jupyterlab_code_formatter autopep8 black \
-  sounddevice pyroomacoustics soundfile
+  sounddevice pyroomacoustics soundfile jupyter-server-proxy streamlit
 RUN jupyter serverextension enable --py jupyterlab_git
 RUN jupyter serverextension enable --py jupyterlab_code_formatter
 
@@ -13,7 +13,8 @@ RUN jupyter labextension install \
   @lckr/jupyterlab_variableinspector \
   @ryantam626/jupyterlab_code_formatter \
   @axlair/jupyterlab_vim \
-  @jupyterlab/debugger
+  @jupyterlab/debugger \
+  @jupyterlab/server-proxy
 
 RUN jupyter lab build
 
