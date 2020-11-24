@@ -28,12 +28,12 @@ RUN pip install \
 RUN pip install pybind11
 RUN git clone https://github.com/aldanor/ipybind.git && cd ipybind && python setup.py build && python setup.py install
 
-# # for openfst
-# RUN conda install -c conda-forge openfst
-# RUN pip install openfst-python
-# 
-# # install as root
-# USER root
-# RUN apt update && apt install -y graphviz
-# 
-# USER ${NB_USER}
+# for openfst
+RUN conda install -c conda-forge openfst
+#RUN pip install openfst-python
+
+# install as root
+USER root
+RUN apt update && apt install -y graphviz
+
+USER ${NB_USER}
