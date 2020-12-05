@@ -32,8 +32,11 @@ RUN git clone https://github.com/aldanor/ipybind.git && cd ipybind && python set
 RUN conda install -c conda-forge openfst
 #RUN pip install openfst-python
 
+# octave kernel
+RUN pip install octave_kernel
+
 # install as root
 USER root
-RUN apt update && apt install -y graphviz
+RUN apt update && apt install -y graphviz octave gnuplot
 
 USER ${NB_USER}
