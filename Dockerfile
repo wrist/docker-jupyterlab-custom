@@ -34,6 +34,7 @@ RUN conda install -c conda-forge openfst
 
 # octave kernel
 RUN pip install octave_kernel
+RUN pip install oct2py
 
 # install as root
 USER root
