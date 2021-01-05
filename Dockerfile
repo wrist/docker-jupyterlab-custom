@@ -38,6 +38,15 @@ RUN pip install oct2py
 
 # install as root
 USER root
-RUN apt update && apt install -y graphviz octave gnuplot
+RUN apt update && apt install -y graphviz octave gnuplot curl libzmq3-dev cmake
 
 USER ${NB_USER}
+
+# rust
+RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=stable -y
+ENV PATH $PATH:$HOME/.cargo/bin
+RUN cargo install evcxr_jupyter
+RUN evcxr_jupyter --install
+RUN echo '. $HOME/.cargo/env' >> ~/.bashrc \
+  echo '. $HOME/.cargo/env' >> ~/.profile
+RUN source $HOME/.cargo/env
