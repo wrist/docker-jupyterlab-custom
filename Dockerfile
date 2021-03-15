@@ -1,7 +1,7 @@
 FROM jupyter/scipy-notebook:latest
 MAINTAINER Hiromasa OHASHI <stoicheia1986@gmail.com>
 
-RUN pip install --upgrade jupyterlab-git jupyterlab_code_formatter autopep8 black \
+RUN pip install --upgrade jupyter-packaging cookiecutter jupyterlab-git jupyterlab_code_formatter autopep8 black \
   sounddevice pyroomacoustics soundfile jupyter-server-proxy streamlit librosa voila
 RUN jupyter serverextension enable --py jupyterlab_git
 RUN jupyter serverextension enable --py jupyterlab_code_formatter
@@ -9,11 +9,9 @@ RUN jupyter serverextension enable --py jupyterlab_code_formatter
 RUN conda install xeus-python -c conda-forge
 
 RUN jupyter labextension install \
-  @jupyterlab/toc \
   @lckr/jupyterlab_variableinspector \
   @ryantam626/jupyterlab_code_formatter \
   @axlair/jupyterlab_vim \
-  @jupyterlab/debugger \
   @jupyterlab/server-proxy
 
 RUN jupyter lab build
