@@ -2,16 +2,14 @@ FROM jupyter/scipy-notebook:latest
 MAINTAINER Hiromasa OHASHI <stoicheia1986@gmail.com>
 
 RUN pip install --upgrade jupyter-packaging cookiecutter jupyterlab-git jupyterlab_code_formatter autopep8 black \
-  sounddevice pyroomacoustics soundfile jupyter-server-proxy streamlit librosa voila
-RUN jupyter serverextension enable --py jupyterlab_git
+  sounddevice pyroomacoustics soundfile jupyter-server-proxy streamlit librosa voila jupyterlab_vim
 RUN jupyter serverextension enable --py jupyterlab_code_formatter
 
 RUN conda install xeus-python -c conda-forge
 
 RUN jupyter labextension install \
-  @lckr/jupyterlab_variableinspector \
+  #@lckr/jupyterlab_variableinspector \
   @ryantam626/jupyterlab_code_formatter \
-  @axlair/jupyterlab_vim \
   @jupyterlab/server-proxy
 
 RUN jupyter lab build
