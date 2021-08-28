@@ -1,6 +1,13 @@
 FROM jupyter/scipy-notebook:latest
 MAINTAINER Hiromasa OHASHI <stoicheia1986@gmail.com>
 
+# install as root
+USER root
+RUN apt update && apt install -y build-essential
+
+USER ${NB_USER}
+
+
 RUN pip install --upgrade jupyter-packaging cookiecutter jupyterlab-git jupyterlab_code_formatter autopep8 black \
   sounddevice pyroomacoustics soundfile jupyter-server-proxy streamlit librosa voila jupyterlab_vim
 RUN jupyter serverextension enable --py jupyterlab_code_formatter
