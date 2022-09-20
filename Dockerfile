@@ -9,7 +9,7 @@ USER ${NB_USER}
 
 
 RUN pip install --upgrade jupyter-packaging cookiecutter jupyterlab-git jupyterlab_code_formatter autopep8 black \
-  sounddevice pyroomacoustics soundfile jupyter-server-proxy streamlit librosa voila jupyterlab_vim
+  sounddevice pyroomacoustics soundfile jupyter-server-proxy streamlit librosa voila jupyterlab_vim jupyterlite
 RUN jupyter serverextension enable --py jupyterlab_code_formatter
 
 RUN conda install xeus-python -c conda-forge
