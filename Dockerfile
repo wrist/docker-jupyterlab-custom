@@ -1,5 +1,5 @@
 FROM jupyter/scipy-notebook:latest
-MAINTAINER Hiromasa OHASHI <stoicheia1986@gmail.com>
+LABEL maintainer="Hiromasa OHASHI <stoicheia1986@gmail.com>"
 
 # install as root
 USER root
@@ -12,7 +12,8 @@ RUN pip install --upgrade jupyter-packaging cookiecutter jupyterlab-git jupyterl
   sounddevice pyroomacoustics soundfile jupyter-server-proxy streamlit librosa voila jupyterlab_vim jupyterlite
 RUN jupyter serverextension enable --py jupyterlab_code_formatter
 
-RUN conda install xeus-python -c conda-forge
+RUN mamba install -y micromamba boa -c conda-forge
+RUN mamba install -y xeus-python -c conda-forge
 
 RUN jupyter labextension install \
   #@lckr/jupyterlab_variableinspector \
@@ -32,7 +33,7 @@ RUN pip install pybind11
 RUN git clone https://github.com/aldanor/ipybind.git && cd ipybind && python setup.py build && python setup.py install
 
 # for openfst
-RUN conda install -c conda-forge openfst
+RUN mamba install -y -c conda-forge openfst
 #RUN pip install openfst-python
 
 # octave kernel
