@@ -54,3 +54,7 @@ RUN evcxr_jupyter --install
 RUN echo '. $HOME/.cargo/env' >> ~/.bashrc \
   echo '. $HOME/.cargo/env' >> ~/.profile
 RUN source $HOME/.cargo/env
+
+# scheme
+RUN pip install --upgrade calysto-scheme
+RUN python -m calysto_scheme install --user
