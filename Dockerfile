@@ -1,4 +1,4 @@
-FROM jupyter/scipy-notebook:latest
+FROM --platform=$BUILDPLATFORM jupyter/scipy-notebook:latest
 LABEL maintainer="Hiromasa OHASHI <stoicheia1986@gmail.com>"
 
 # install as root
@@ -10,15 +10,15 @@ USER ${NB_USER}
 
 RUN pip install --upgrade jupyter-packaging cookiecutter jupyterlab-git jupyterlab_code_formatter autopep8 black \
   sounddevice pyroomacoustics soundfile jupyter-server-proxy streamlit librosa voila jupyterlab_vim jupyterlite
-RUN jupyter serverextension enable --py jupyterlab_code_formatter
+RUN jupyter server extension enable --py jupyterlab_code_formatter
 
 RUN mamba install -y micromamba boa -c conda-forge
 RUN mamba install -y xeus-python -c conda-forge
 
-RUN jupyter labextension install \
-  #@lckr/jupyterlab_variableinspector \
-  @ryantam626/jupyterlab_code_formatter \
-  @jupyterlab/server-proxy
+#RUN jupyter labextension install \
+#  #@lckr/jupyterlab_variableinspector \
+#  #@ryantam626/jupyterlab_code_formatter \
+#  @jupyterlab/server-proxy
 
 RUN jupyter lab build
 
@@ -33,7 +33,7 @@ RUN pip install pybind11
 RUN git clone https://github.com/aldanor/ipybind.git && cd ipybind && python setup.py build && python setup.py install
 
 # for openfst
-RUN mamba install -y -c conda-forge openfst
+#RUN mamba install -y -c conda-forge openfst
 #RUN pip install openfst-python
 
 # octave kernel
