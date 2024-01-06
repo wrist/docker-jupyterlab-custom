@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM jupyter/scipy-notebook:latest
+FROM --platform=$TARGETPLATFORM jupyter/scipy-notebook:latest
 LABEL maintainer="Hiromasa OHASHI <stoicheia1986@gmail.com>"
 
 # install as root
