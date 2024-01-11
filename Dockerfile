@@ -7,7 +7,7 @@ RUN apt update && apt install -y build-essential
 
 USER ${NB_USER}
 
-
+RUN pip install --upgrade pip
 RUN pip install --upgrade jupyter-packaging cookiecutter jupyterlab-git jupyterlab_code_formatter autopep8 black \
   sounddevice pyroomacoustics soundfile jupyter-server-proxy streamlit librosa voila jupyterlab_vim jupyterlite
 RUN jupyter server extension enable --py jupyterlab_code_formatter
