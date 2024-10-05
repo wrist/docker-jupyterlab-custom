@@ -1,4 +1,5 @@
-FROM --platform=$TARGETPLATFORM jupyter/scipy-notebook:latest
+#FROM --platform=$TARGETPLATFORM jupyter/scipy-notebook:latest
+FROM --platform=$TARGETPLATFORM quay.io/jupyter/scipy-notebook:latest
 LABEL maintainer="Hiromasa OHASHI <stoicheia1986@gmail.com>"
 
 # install as root
@@ -49,7 +50,7 @@ USER ${NB_USER}
 # rust
 RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=stable -y
 ENV PATH $PATH:$HOME/.cargo/bin
-RUN cargo install evcxr_jupyter
+RUN cargo install --locked evcxr_jupyter
 RUN evcxr_jupyter --install
 RUN echo '. $HOME/.cargo/env' >> ~/.bashrc \
   echo '. $HOME/.cargo/env' >> ~/.profile
